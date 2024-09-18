@@ -1,4 +1,3 @@
-```markdown
 # Log Engine v1
 
 ## Overview
