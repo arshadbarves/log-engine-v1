@@ -23,8 +23,6 @@ pub enum LoggerError {
     FormatterError(String),
     #[error("Security error: {0}")]
     SecurityError(String),
-    #[error("Configuration error: {0}")]
-    ConfigurationError(#[from] ConfigError),
 }
 
 /// Represents a log message with associated metadata.
@@ -53,7 +51,7 @@ pub struct Logger {
     formatter: Arc<dyn Formatter>,
     queue: Arc<SegQueue<LogMessage>>,
     notify: Arc<Notify>,
-    metrics: Arc<MetricsManager>,
+    pub metrics: Arc<MetricsManager>,
     security: Arc<SecurityManager>,
 }
 

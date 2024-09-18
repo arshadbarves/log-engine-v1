@@ -1,8 +1,8 @@
-level: "DEBUG"
+level: "TRACE"
 filters: {}
 handlers:
-  - type_: "memory"
+  - type_: "console"
     config:
       capacity: 1_000_000
-formatter: "json"
+formatter: "text"
 plugins: []
