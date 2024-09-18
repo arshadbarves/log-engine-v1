@@ -1,0 +1,8 @@
+level: "DEBUG"
+filters: {}
+handlers:
+  - type_: "memory"
+    config:
+      capacity: 1_000_000
+formatter: "json"
+plugins: []

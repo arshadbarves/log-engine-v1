@@ -1,0 +1,25 @@
+level: "DEBUG"
+filters:
+  module_a: "INFO"
+  module_b: "WARN"
+handlers:
+  - type_: "console"
+    level: "DEBUG"
+  - type_: "file"
+    config:
+      file_path: "logs/app.log"
+      max_size: 10485760 # 10 MB
+  - type_: "remote"
+    config:
+      address: "127.0.0.1"
+      port: 9000
+      retries: 5
+  - type_: "memory"
+    config:
+      capacity: 5000
+formatter: "json"
+plugins:
+  - name: "CustomPlugin"
+    config:
+      param1: "value1"
+      param2: "value2"

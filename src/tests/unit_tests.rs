@@ -1,16 +1,18 @@
 #[cfg(test)]
 mod unit_tests {
-    use log_engine_v1::config::ConfigurationManager;
-    use log_engine_v1::formatters::{Formatter, TextFormatter};
-    use log_engine_v1::handlers::{ConsoleHandler, LogHandler};
-    use log_engine_v1::metrics::MetricsManager;
-    use log_engine_v1::security::SecurityManager;
+    use crate::config::ConfigurationManager;
+    use crate::formatters::{Formatter, TextFormatter};
+    use crate::handlers::{ConsoleHandler, LogHandler};
+    use crate::metrics::MetricsManager;
+    use crate::security::SecurityManager;
     use serde_json::json;
     use std::sync::atomic::Ordering;
 
     #[tokio::test]
     async fn test_configuration_loading() {
-        let config = ConfigurationManager::new("config/config.yaml").await.unwrap();
+        let config = ConfigurationManager::new("config/config.yaml")
+            .await
+            .unwrap();
         let loaded_config = config.get_config().await;
         assert_eq!(loaded_config.level, "DEBUG");
         assert!(loaded_config.handlers.len() > 0);
@@ -26,7 +28,9 @@ mod unit_tests {
     #[tokio::test]
     async fn test_text_formatter() {
         let formatter = TextFormatter::new(Some("{level}: {message}".to_string()));
-        let formatted = formatter.format("INFO", "Test message", &json!({"key": "value"})).await;
+        let formatted = formatter
+            .format("INFO", "Test message", &json!({"key": "value"}))
+            .await;
         assert_eq!(formatted, "INFO: Test message");
     }
 
